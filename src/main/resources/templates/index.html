@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Soler input panel</title>
+</head>
+<script>
+
+
+</script>
+<body>
+
+<!--<header th:replace="layout :: site-header" />-->
+
+<form method="post" th:object="${serviceInput}">
+
+    <div>
+        <label for="rules">Rules:</label>
+        <textarea id="rules" th:field="${serviceInput.rules}"/>
+    </div>
+    <div>
+        <label for="facts">Facts:</label>
+        <input id="facts" th:field="${serviceInput.facts}"/>
+
+    </div>
+    <div>
+        <label for="goal">Goal:</label>
+        <input id="goal" th:field="${serviceInput.goal}"/>
+    </div>
+    <div>
+        <label for="goal">Sovler type:</label>
+        <select th:field="${serviceInput.type}">
+            <option th:each="type : ${T(kursinis.client.SolverType).values()}"
+                    th:value="${type}"
+                    th:text="${type}">
+            </option>
+        </select>
+    </div>
+
+    <div>
+        <input type="submit" value="Solve" onclick="refresh()"/>
+    </div>
+</form>
+<div th:fragment="resultsBlock">
+    <div th:if="${serviceOutput != null}">
+        <div th:text="${serviceOutput.result}"/>
+        <div th:text="${serviceOutput.resultPath}"/>
+        <div th:text="${serviceOutput.solverWorkflow}"/>
+    </div>
+</div>
+</body>
+</html>
