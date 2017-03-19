@@ -7,7 +7,6 @@ import kursinis.client.utils.LoadTest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -20,9 +19,6 @@ public class IndexController {
 
     @Autowired
     public SolverService solverService;
-//
-//    @Autowired
-//    public NotificationService notificationService;
 
     @RequestMapping(value = "/{type}/{id}", method = RequestMethod.GET)
     public String index(@PathVariable("type") String type, @PathVariable("id") Long id, Model model) {

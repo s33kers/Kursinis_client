@@ -30,7 +30,6 @@ public class SolverServiceImpl implements SolverService {
             e.printStackTrace();
         }
 
-
         try {
             URL url = new URL("http://localhost:8080/solver?WSDL");
             QName qname = new QName("http://service/", "ChainSolverImplService");
