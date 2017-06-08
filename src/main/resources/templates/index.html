@@ -1,51 +1,81 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>Soler input panel</title>
+    <title>Tiesioginio ir atbulinio išvedimo algoritmo programa</title>
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css"/>
+
 </head>
-<script>
-
-
-</script>
 <body>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
 
-<!--<header th:replace="layout :: site-header" />-->
+<nav class="navbar navbar-inverse">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <a class="navbar-brand" th:href="@{/}">Tiesioginio ir atbulinio išvedimo algoritmo programa</a>
+        </div>
+    </div>
+</nav>
 
-<form method="post" th:object="${serviceInput}">
-
-    <div>
-        <label for="rules">Rules:</label>
-        <textarea id="rules" th:field="${serviceInput.rules}"/>
-    </div>
-    <div>
-        <label for="facts">Facts:</label>
-        <input id="facts" th:field="${serviceInput.facts}"/>
-
-    </div>
-    <div>
-        <label for="goal">Goal:</label>
-        <input id="goal" th:field="${serviceInput.goal}"/>
-    </div>
-    <div>
-        <label for="goal">Sovler type:</label>
-        <select th:field="${serviceInput.type}">
-            <option th:each="type : ${T(kursinis.client.SolverType).values()}"
-                    th:value="${type}"
-                    th:text="${type}">
-            </option>
-        </select>
-    </div>
-
-    <div>
-        <input type="submit" value="Solve" onclick="refresh()"/>
-    </div>
-</form>
-<div th:fragment="resultsBlock">
-    <div th:if="${serviceOutput != null}">
-        <div th:text="${serviceOutput.result}"/>
-        <div th:text="${serviceOutput.resultPath}"/>
-        <div th:text="${serviceOutput.solverWorkflow}"/>
+<div class="container-fluid text-center">
+    <div class="row content">
+        <div class="col-sm-2 sidenav"></div>
+        <div class="col-sm-8 text-left">
+            <div th:if="${serviceOutput == null}">
+                <h1>Įvestis</h1>
+                <form method="post" th:object="${serviceInput}">
+                    <div class="form-group">
+                        <label for="rules">Taisyklės:</label>
+                        <textarea class="form-control" style="min-width: 100%" id="rules" rows="10" th:field="${serviceInput.rules}"/>
+                    </div>
+                    <div class="form-group">
+                        <label for="facts">Faktai:</label>
+                        <input class="form-control" id="facts" th:field="${serviceInput.facts}"/>
+                    </div>
+                    <div class="form-group">
+                        <label for="goal">Tikslas:</label>
+                        <input class="form-control" id="goal" th:field="${serviceInput.goal}"/>
+                    </div>
+                    <div class="form-group">
+                        <label for="goal">Sprendimo algoritmas:</label>
+                        <select class="form-control" th:field="${serviceInput.type}">
+                            <option th:each="type : ${T(kursinis.client.SolverType).values()}"
+                                    th:value="${type}"
+                                    th:text="${type.value}">
+                            </option>
+                        </select>
+                    </div>
+                    <div>
+                        <input type="submit" value="Spręsti" class="btn btn-default"/>
+                    </div>
+                </form>
+            </div>
+            <div th:if="${serviceOutput != null}">
+                <div th:if="${!serviceOutput.error}">
+                    <h1>Rezultatas</h1>
+                    <p>
+                        Tikslas: <span th:text="${serviceOutput.result}"/>
+                    </p>
+                    <p>
+                        Sprendimo kelias: <span th:text="${serviceOutput.resultPath}"/>
+                    </p>
+                    Sprendimas:
+                    <div th:utext="${serviceOutput.solverWorkflow}"></div>
+                </div>
+                <div th:if="${serviceOutput.error}">
+                    <h1>Klaida</h1>
+                    <p>
+                        <span th:text="${serviceOutput.result}"/>
+                    </p>
+                </div>
+                <a th:href="@{/}" class="btn btn-default">Spręsti per naują</a>
+            </div>
+        </div>
+        <div class="col-sm-2 sidenav"></div>
     </div>
 </div>
+
+<footer class="container-fluid text-center">
+</footer>
 </body>
 </html>

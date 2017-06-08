@@ -1,20 +1,15 @@
 package kursinis.client.model;
 
-import com.sun.istack.NotNull;
 import kursinis.client.SolverType;
 
 public class ServiceInput {
 
-    @NotNull
     private String rules;
 
-    @NotNull
     private String facts;
 
-    @NotNull
     private String goal;
 
-    @NotNull
     private SolverType type;
 
     public ServiceInput() {}
