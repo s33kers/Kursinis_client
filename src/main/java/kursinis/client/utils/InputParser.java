@@ -2,10 +2,10 @@ package kursinis.client.utils;
 
 import kursinis.client.exceptions.InputFormatException;
 import org.thymeleaf.util.StringUtils;
-import service.Atom;
-import service.Input;
-import service.ObjectFactory;
-import service.Rule;
+import us.martink.service.Atom;
+import us.martink.service.Input;
+import us.martink.service.ObjectFactory;
+import us.martink.service.Rule;
 
 import java.util.ArrayList;
 import java.util.Arrays;

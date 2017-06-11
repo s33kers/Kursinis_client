@@ -5,11 +5,11 @@ import kursinis.client.model.ServiceInput;
 import kursinis.client.model.ServiceOutput;
 import kursinis.client.utils.InputParser;
 import org.springframework.stereotype.Component;
-import service.ChainSolver;
-import service.ChainSolverImplService;
-import service.Input;
-import service.SolverResult;
-import service.Unsolvable_Exception;
+import us.martink.service.ChainSolver;
+import us.martink.service.ChainSolverImplService;
+import us.martink.service.Input;
+import us.martink.service.SolverResult;
+import us.martink.service.Unsolvable_Exception;
 
 import javax.xml.ws.Service;
 
